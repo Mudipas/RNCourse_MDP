@@ -1,17 +1,18 @@
 import { useState } from "react";
 // Import statement untuk mengimpor komponen yang akan digunakan dalam aplikasi
-import {
-  StyleSheet,
-  View,
-  FlatList,
-} from "react-native";
+import { StyleSheet, View, FlatList,Button } from "react-native";
 
 import GoalItem from "./components/GoalItem";
 import GoalInput from "./components/GoalInput";
 
 // Deklarasi fungsi komponen utama 'App'
 export default function App() {
-  const [courseGoals, setCourseGoals] = useState([]);
+ const [modalIsVisible, setModalIsVisible] = useState(false)
+ const [courseGoals, setCourseGoals] = useState([]);
+
+ function startAddGoalHandler( ) {
+  setModalIsVisible(true);
+ }
 
   function addGoalHandler(enteredGoalText) {
     setCourseGoals((currentCourseGoals) => [
@@ -32,7 +33,8 @@ export default function App() {
   return (
     // Awal dari tampilan aplikasi
     <View style={styles.appContainer}>
-      <GoalInput onAddGoal={addGoalHandler} />
+      <Button title="Add New Goal" color="#5e0acc" onPress={startAddGoalHandler} />
+      <GoalInput visible={modalIsVisible} onAddGoal={addGoalHandler} />
       <View style={styles.goalsContainer}>
         <FlatList
           data={courseGoals}
