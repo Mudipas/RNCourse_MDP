@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import { View, TextInput, Button, StyleSheet, Modal, } from 'react-native';
-
+import { View, TextInput, Button, StyleSheet, Modal } from 'react-native';
 
 function GoalInput(props) {
-  const [enteredGoalText, setEnteredGoalText] = useState("");
+  const [enteredGoalText, setEnteredGoalText] = useState('');
 
   function goalInputHandler(enteredText) {
     setEnteredGoalText(enteredText);
@@ -24,39 +23,43 @@ function GoalInput(props) {
           value={enteredGoalText}
         />
         <View style={styles.buttonContainer}>
-          <View style={styles.button} ><Button title="Add Goal" onPress={addGoalHandler} /></View>
-          <View style={styles.button} ><Button title="Cancel" /></View>
+          <View style={styles.button}>
+            <Button title="Add Goal" onPress={addGoalHandler} />
+          </View>
+          <View style={styles.button}>
+            <Button title="Cancel" onPress={props.onCancel} />
+          </View>
         </View>
       </View>
     </Modal>
   );
-};
+}
 
 export default GoalInput;
 
 const styles = StyleSheet.create({
   inputContainer: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     marginBottom: 24,
     padding: 16,
     borderBottomWidth: 2, // Mengganti 'borderBottoom' menjadi 'borderBottom'
-    borderBottomColor: "green",
+    borderBottomColor: 'green',
   },
   textInput: {
     borderWidth: 2,
-    borderColor: "blue",
-    width: "100%",
+    borderColor: 'blue',
+    width: '100%',
     marginRight: 8,
     padding: 8,
   },
   buttonContainer: {
-    marginTop 16,
+    marginTop: 16, // Menambahkan titik (.) pada marginTop
     flexDirection: 'row',
   },
-  button:{
-    width:'100',
-    marginHorizontal:6,
-  }
+  button: {
+    width: 100, // Mengubah '100' menjadi '100' (tanpa tanda kutip)
+    marginHorizontal: 6,
+  },
 });
